@@ -13,44 +13,44 @@ namespace mar_peleh
 {
     public partial class game : Form
     {
-        Random rnd = new Random();
-        List<PictureBox> mohre = new List<PictureBox>();
-        List<bool> isOutside = new List<bool>();
+        Random Rnd = new Random();
+        List<PictureBox> Mohre = new List<PictureBox>();
+        List<bool> IsOutSide = new List<bool>();
         List<int> GamerCells=new List<int>();
-        List<bool> ltrList = new List<bool>(); 
+        List<bool> LtrList = new List<bool>(); 
         int TassNumber;
         int TurnGamer=0;
-        int stepsLeft = 0;
-        int NumberOfPlayer = EnterNames.allNames.Count;
+        int StepsLeft = 0;
+        int NumberOfPlayer = EnterNames.AllNames.Count;
         Color[] c = { Color.Red, Color.Green, Color.Yellow,Color.Blue};
         public game()
         {
             InitializeComponent();
         }
 
-        private void game_Load(object sender, EventArgs e)
+        private void Game_Load(object sender, EventArgs e)
         {
             if (NumberOfPlayer == 1)
             {
                 NumberOfPlayer = 2;
-                EnterNames.allNames.Add("کامپیوتر");
+                EnterNames.AllNames.Add("کامپیوتر");
             }
             //add mohre in list
-            if (NumberOfPlayer >= 1) mohre.Add(pcbGamer1);
-            if (NumberOfPlayer >= 2) mohre.Add(pcbGamer2);
-            if (NumberOfPlayer >= 3) mohre.Add(pcbGamer3);
-            if (NumberOfPlayer >= 4) mohre.Add(pcbGamer4);
+            if (NumberOfPlayer >= 1) Mohre.Add(pcbGamer1);
+            if (NumberOfPlayer >= 2) Mohre.Add(pcbGamer2);
+            if (NumberOfPlayer >= 3) Mohre.Add(pcbGamer3);
+            if (NumberOfPlayer >= 4) Mohre.Add(pcbGamer4);
 
 
             // set location and direction
-            for (int i = 0; i < mohre.Count; i++)
+            for (int i = 0; i < Mohre.Count; i++)
             {
-                isOutside.Add(true);
+                IsOutSide.Add(true);
                 GamerCells.Add(1);
-                ltrList.Add(true);
+                LtrList.Add(true);
             }
             lblTurn.ForeColor = c[TurnGamer];
-            lblTurn.Text = "نوبت: " + EnterNames.allNames[TurnGamer] + " است"; 
+            lblTurn.Text = "نوبت: " + EnterNames.AllNames[TurnGamer] + " است"; 
         }
 
         public void PlaySound(string soundFile)
@@ -59,7 +59,7 @@ namespace mar_peleh
             player.Play();
         }
 
-        private void pictureBoxTass_Click(object sender, EventArgs e)
+        private void PictureBoxTass_Click(object sender, EventArgs e)
         {
             CheckTass();
         }
@@ -67,20 +67,20 @@ namespace mar_peleh
         private void CheckTass()
         {
             PlaySound("sound/tassSound.wav");
-            TassNumber = rnd.Next(1, 7);
+            TassNumber = Rnd.Next(1, 7);
             pictureBoxTass.ImageLocation = "img/i" + TassNumber + ".PNG";
-            stepsLeft = TassNumber;
-            if (isOutside[TurnGamer])
+            StepsLeft = TassNumber;
+            if (IsOutSide[TurnGamer])
             {
                 if (TassNumber == 6)
                 {
-                    mohre[TurnGamer].Parent = pictureBoxGame;
-                    mohre[TurnGamer].Location = new Point(
-                    lblCell1.Location.X - pictureBoxGame.Location.X + (lblCell1.Width / 2) - (mohre[TurnGamer].Width / 2),
-                    lblCell1.Location.Y - pictureBoxGame.Location.Y + (lblCell1.Height / 2) - (mohre[TurnGamer].Height / 2));
-                    isOutside[TurnGamer] = false;
-                    stepsLeft = 0;
-                    if (EnterNames.allNames[TurnGamer] == "کامپیوتر")
+                    Mohre[TurnGamer].Parent = pictureBoxGame;
+                    Mohre[TurnGamer].Location = new Point(
+                    lblCell1.Location.X - pictureBoxGame.Location.X + (lblCell1.Width / 2) - (Mohre[TurnGamer].Width / 2),
+                    lblCell1.Location.Y - pictureBoxGame.Location.Y + (lblCell1.Height / 2) - (Mohre[TurnGamer].Height / 2));
+                    IsOutSide[TurnGamer] = false;
+                    StepsLeft = 0;
+                    if (EnterNames.AllNames[TurnGamer] == "کامپیوتر")
                         EndPlayerTurn();
                     return;
                 }
@@ -100,13 +100,13 @@ namespace mar_peleh
             }
         }
 
-        private void timer1_Tick(object sender, EventArgs e)
+        private void Timer1_Tick(object sender, EventArgs e)
         {
             
             //move
-            move();
+            Move();
             //check snakes and ladders
-            if (stepsLeft == 0)
+            if (StepsLeft == 0)
             {
                 int cell = GamerCells[TurnGamer];
                 switch (cell)
@@ -135,25 +135,25 @@ namespace mar_peleh
             }
         }
 
-        private void move()
+        private void Move()
         {
             PlaySound("sound/mohreSound.wav");
 
             //going up
             if (GamerCells[TurnGamer] % 10 == 0)
             {
-                mohre[TurnGamer].Top -= 45;
-                ltrList[TurnGamer] = !ltrList[TurnGamer];
+                Mohre[TurnGamer].Top -= 45;
+                LtrList[TurnGamer] = !LtrList[TurnGamer];
             }
             //left and right
-            else if (ltrList[TurnGamer])
-                mohre[TurnGamer].Left += 45;
+            else if (LtrList[TurnGamer])
+                Mohre[TurnGamer].Left += 45;
             else
-                mohre[TurnGamer].Left -= 45;
+                Mohre[TurnGamer].Left -= 45;
 
-            if (stepsLeft >= 0)
+            if (StepsLeft >= 0)
             {
-                stepsLeft--;
+                StepsLeft--;
                 GamerCells[TurnGamer]++;
             }
             else
@@ -165,23 +165,23 @@ namespace mar_peleh
             Label lbl = this.Controls.Find("label" + TargetCell, true).FirstOrDefault() as Label;
             if (lbl != null)
             {
-                mohre[TurnGamer].Location = lbl.Location;
+                Mohre[TurnGamer].Location = lbl.Location;
                 GamerCells[TurnGamer] = TargetCell;
                 //check ltr
                 int newRow = (GamerCells[TurnGamer] - 1) / 10;
-                ltrList[TurnGamer] = (newRow % 2 == 0);
+                LtrList[TurnGamer] = (newRow % 2 == 0);
             }
         }
 
        
         private void CheckWin()
         {
-            if (stepsLeft == 0 && GamerCells[TurnGamer] == 100)
+            if (StepsLeft == 0 && GamerCells[TurnGamer] == 100)
             {
                 timer1.Enabled = false;
                 PlaySound("sound/winSound.wav");
-                MessageBox.Show(EnterNames.allNames[TurnGamer] + "  برنده شد", "برنده", MessageBoxButtons.OK);
-                if (mohre.Count == 2)
+                MessageBox.Show(EnterNames.AllNames[TurnGamer] + "  برنده شد", "برنده", MessageBoxButtons.OK);
+                if (Mohre.Count == 2)
                 {
                     MessageBox.Show("یازی تموم شد", "پایان بازی", MessageBoxButtons.OK);
                     pictureBoxTass.Enabled = false;
@@ -189,13 +189,13 @@ namespace mar_peleh
                 else
                 {
                     //delete winning piece
-                    mohre[TurnGamer].Location = panelMohreh.Location;
-                    mohre[TurnGamer].Visible = false;
-                    mohre.RemoveAt(TurnGamer);
-                    ltrList.RemoveAt(TurnGamer);
-                    isOutside.RemoveAt(TurnGamer);
+                    Mohre[TurnGamer].Location = panelMohreh.Location;
+                    Mohre[TurnGamer].Visible = false;
+                    Mohre.RemoveAt(TurnGamer);
+                    LtrList.RemoveAt(TurnGamer);
+                    IsOutSide.RemoveAt(TurnGamer);
                     GamerCells.RemoveAt(TurnGamer);
-                    EnterNames.allNames.RemoveAt(TurnGamer);
+                    EnterNames.AllNames.RemoveAt(TurnGamer);
                     return;
                 }
             }
@@ -208,29 +208,29 @@ namespace mar_peleh
             pictureBoxTass.Enabled = true;
             if (TassNumber != 6)
                 TurnGamer++;
-            if (TurnGamer >= mohre.Count)
+            if (TurnGamer >= Mohre.Count)
                 TurnGamer = 0;
             lblTurn.ForeColor = c[TurnGamer];
-            lblTurn.Text = "نوبت: " + EnterNames.allNames[TurnGamer] + " است";
-            if (EnterNames.allNames[TurnGamer] == "کامپیوتر" )
+            lblTurn.Text = "نوبت: " + EnterNames.AllNames[TurnGamer] + " است";
+            if (EnterNames.AllNames[TurnGamer] == "کامپیوتر" )
             {
                 timerTass.Enabled = true;
             }
         }
 
-        private void timerTass_Tick(object sender, EventArgs e)
+        private void TimerTass_Tick(object sender, EventArgs e)
         {
             timerTass.Enabled = false;
             CheckTass();
         }
 
-        private void game_FormClosing(object sender, FormClosingEventArgs e)
+        private void Game_FormClosing(object sender, FormClosingEventArgs e)
         {
             NumberOfPlayer = 0;
-            mohre.Clear();
-            EnterNames.allNames.Clear();
-            ltrList.Clear();
-            isOutside.Clear();
+            Mohre.Clear();
+            EnterNames.AllNames.Clear();
+            LtrList.Clear();
+            IsOutSide.Clear();
             GamerCells.Clear();
         }
 

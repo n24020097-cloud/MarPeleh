@@ -45,7 +45,7 @@
             this.btnComputerGame.Size = new System.Drawing.Size(98, 53);
             this.btnComputerGame.TabIndex = 1;
             this.btnComputerGame.Text = "بازی با کامپیوتر";
-            this.btnComputerGame.Click += new System.EventHandler(this.btnComputerGame_Click);
+            this.btnComputerGame.Click += new System.EventHandler(this.BtnComputerGame_Click);
             // 
             // btnHumanGame
             // 
@@ -58,7 +58,7 @@
             this.btnHumanGame.Size = new System.Drawing.Size(98, 53);
             this.btnHumanGame.TabIndex = 1;
             this.btnHumanGame.Text = "بازی با انسان";
-            this.btnHumanGame.Click += new System.EventHandler(this.btnHumanGame_Click);
+            this.btnHumanGame.Click += new System.EventHandler(this.BtnHumanGame_Click);
             // 
             // btnExit
             // 
@@ -71,7 +71,7 @@
             this.btnExit.Size = new System.Drawing.Size(98, 53);
             this.btnExit.TabIndex = 1;
             this.btnExit.Text = "خروج";
-            this.btnExit.Click += new System.EventHandler(this.glassButton3_Click);
+            this.btnExit.Click += new System.EventHandler(this.GlassButton3_Click);
             // 
             // label1
             // 
@@ -94,7 +94,6 @@
             this.Controls.Add(this.btnComputerGame);
             this.Name = "ChoseGame";
             this.Text = "Chose Game";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ChoseGame_FormClosing);
             this.ResumeLayout(false);
             this.PerformLayout();
 

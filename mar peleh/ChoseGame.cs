@@ -17,14 +17,14 @@ namespace mar_peleh
             InitializeComponent();
         }
 
-        private void glassButton3_Click(object sender, EventArgs e)
+        private void GlassButton3_Click(object sender, EventArgs e)
         {
             DialogResult a=MessageBox.Show("آیا مطمئنی که میخوای از برنامه خارج بشی؟", "خروج",MessageBoxButtons.YesNo);
             if (a == DialogResult.Yes)
                 this.Close();
         }
 
-        private void btnComputerGame_Click(object sender, EventArgs e)
+        private void BtnComputerGame_Click(object sender, EventArgs e)
         {
             EnterNames f2 = new EnterNames();
             f2.btnAddName.Enabled = false;
@@ -33,18 +33,12 @@ namespace mar_peleh
             this.Hide();
         }
 
-        private void btnHumanGame_Click(object sender, EventArgs e)
+        private void BtnHumanGame_Click(object sender, EventArgs e)
         {
             EnterNames f2 = new EnterNames();
             f2.f1 = this;
             f2.Show();
             this.Hide();
-        }
-
-
-        private void ChoseGame_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            
         }
 
     }

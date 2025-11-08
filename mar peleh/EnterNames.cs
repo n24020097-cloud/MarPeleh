@@ -13,16 +13,16 @@ namespace mar_peleh
     public partial class EnterNames : Form
     {
         public ChoseGame f1;
-        private int nextLabelY;
-        private int nexttxtY;
-        public static List<string> allNames = new List<string>();
-        private List<TextBox> textBoxes = new List<TextBox>();
+        private int NextLabelY;
+        private int NextTxtY;
+        public static List<string> AllNames = new List<string>();
+        private List<TextBox> TextBoxes = new List<TextBox>();
         int t = 0;
         public EnterNames()
         {
             InitializeComponent();
-            nextLabelY = lblName.Location.Y + lblName.Height +40;
-            nexttxtY = txtGamerName.Location.Y + txtGamerName.Height + 20;
+            NextLabelY = lblName.Location.Y + lblName.Height +40;
+            NextTxtY = txtGamerName.Location.Y + txtGamerName.Height + 20;
         }
         private void btnAddName_Click(object sender, EventArgs e)
         {
@@ -30,17 +30,17 @@ namespace mar_peleh
             Label newlabel = new Label();
             newlabel.Text = lblName.Text;
             newlabel.AutoSize = true;
-            newlabel.Location = new Point(lblName.Location.X, nextLabelY);
+            newlabel.Location = new Point(lblName.Location.X, NextLabelY);
             this.Controls.Add(newlabel);
-            nextLabelY += newlabel.Height + 40;
+            NextLabelY += newlabel.Height + 40;
             //add textbox
             TextBox newtxt = new TextBox();
-            newtxt.Location = new Point(txtGamerName.Location.X, nexttxtY);
+            newtxt.Location = new Point(txtGamerName.Location.X, NextTxtY);
             newtxt.Size = txtGamerName.Size;
             newtxt.Multiline = true;
             this.Controls.Add(newtxt);
-            nexttxtY += newtxt.Height + 20;
-            textBoxes.Add(newtxt);
+            NextTxtY += newtxt.Height + 20;
+            TextBoxes.Add(newtxt);
 
             t++;
             if (t == 3)
@@ -50,15 +50,15 @@ namespace mar_peleh
         private void btnStartGame_Click(object sender, EventArgs e)
         {
             //add names in varible
-            allNames.Add(txtGamerName.Text);
-            foreach (TextBox tb in textBoxes) 
+            AllNames.Add(txtGamerName.Text);
+            foreach (TextBox tb in TextBoxes) 
             {
                 if (string.IsNullOrWhiteSpace(tb.Text)) 
                 {
                     MessageBox.Show("لطفاً همه تکست‌باکس‌ها را پر کنید!");
                     return;
                 }
-                allNames.Add(tb.Text);
+                AllNames.Add(tb.Text);
             }
 
             game f3 = new game();

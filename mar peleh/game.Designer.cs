@@ -134,7 +134,7 @@
             this.pictureBoxTass.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBoxTass.TabIndex = 2;
             this.pictureBoxTass.TabStop = false;
-            this.pictureBoxTass.Click += new System.EventHandler(this.pictureBoxTass_Click);
+            this.pictureBoxTass.Click += new System.EventHandler(this.PictureBoxTass_Click);
             // 
             // pictureBoxGame
             // 
@@ -165,7 +165,7 @@
             // timer1
             // 
             this.timer1.Interval = 300;
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            this.timer1.Tick += new System.EventHandler(this.Timer1_Tick);
             // 
             // lblTurn
             // 
@@ -359,7 +359,7 @@
             // timerTass
             // 
             this.timerTass.Interval = 1500;
-            this.timerTass.Tick += new System.EventHandler(this.timerTass_Tick);
+            this.timerTass.Tick += new System.EventHandler(this.TimerTass_Tick);
             // 
             // game
             // 
@@ -392,8 +392,8 @@
             this.Controls.Add(this.labelEnd);
             this.Name = "game";
             this.Text = "game";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.game_FormClosing);
-            this.Load += new System.EventHandler(this.game_Load);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Game_FormClosing);
+            this.Load += new System.EventHandler(this.Game_Load);
             this.panelMohreh.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pcbGamer4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcbGamer2)).EndInit();
